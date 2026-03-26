@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Rocket Elevators</title>
+        <link rel="icon" href="./assets/images/rocketElevators/favicon.ico">
+        <meta name="description" content="" />
+        <meta name="Author" content="Rocket Elevators [www.rocketElevators.com]" />
+
+        <!-- mobile settings -->
+        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+        <!-- WEB FONTS : use %7C instead of | (pipe) -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+
+        <!-- CORE CSS -->
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- THEME CSS -->
+        <link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+
+        <!-- PAGE LEVEL SCRIPTS -->
+        <link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/color_scheme/red.css" rel="stylesheet" type="text/css" id="color_scheme" />
+    </head>
+
+    <body class="smoothscroll enable-animation">
+
+        <!-- WEBSITE WRAPPER -->
+        <div id="wrapper">
+
+            <!-- TOP NAV -->
+            <div id="header" class="navbar-toggleable-md sticky header-md clearfix">
+                <header id="topNav">
+                    <div class="container">
+                        <!-- Mobile Menu Button -->
+                        <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <!-- Logo -->
+                        <a class="logo float-left scrollTo" href="#wrapper">
+                            <img src="assets/images/rocketElevators/rocketLogo.png" alt="" />
+                        </a>
+                        <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+                            <nav class="nav-main">
+                                <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+                                    <li class="active"><!-- HOME -->
+                                        <a href="index.html">
+                                            HOME
+                                        </a>
+                                    </li>
+                                    <li class="dropdown"><!-- SERVICES -->
+                                        <a class="dropdown-toggle" href="index.html#services">
+                                            SERVICES
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown">
+                                                <a class="dropdown-toggle" href="residential.html">
+                                                    RESIDENTIAL SERVICES
+                                                </a>
+                                                <a class="dropdown-toggle" href="commercial.html">
+                                                    COMMERCIAL SERVICES
+                                                </a>
+                                                <a class="dropdown-toggle" href="quote.html">
+                                                    REQUEST A QUOTE
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><!-- PORTFOLIO -->
+                                        <a href="index.html#portfolio">
+                                            PORTFOLIO
+                                        </a>
+                                    </li>
+                                    <li><!-- NEWS -->
+                                        <a href="index.html#news">
+                                            NEWS
+                                        </a>
+                                    </li>
+                                    <li><!-- CLIENTS -->
+                                        <a href="index.html#clients">
+                                            CLIENTS
+                                        </a>
+                                    </li>
+                                    <li><!-- CONTACT -->
+                                        <a href="index.html#contact">
+                                            CONTACT
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <!-- /TOP NAV -->
+
+            <!-- PRICING -->
+            <section id="pricing">
+                <div class="container">
+                    <header class="text-center mb-60 wow fadeInUp" data-wow-delay="0.5s">
+                        <h1>Rocket Elevators Pricing</h1>
+                        <p class="lead font-lato">Elevator options tailored to your needs</p>
+                    </header>
+                    <div class="row wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="col-md-4 col-sm-3">
+                            <div class="price-clean">
+                                <h4>
+                                    <sup>$</sup>8000<em>/unit</em>
+                                </h4>
+                                <h5> Standard </h5>
+                                <hr />
+                                <p>For individuals looking for something simple to get started.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-3">
+                            <div class="price-clean">
+                                <h4>
+                                    <sup>$</sup>12000<em>/unit</em>
+                                </h4>
+                                <h5> Premium </h5>
+                                <hr />
+                                <p>For those seeking a more advanced and premium solution.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-3">
+                            <div class="price-clean price-clean-popular">
+                                <div class="ribbon">
+                                    <div class="ribbon-inner">POPULAR</div>
+                                </div>
+                                <h4>
+                                    <sup>$</sup>15000<em>/unit</em>
+                                </h4>
+                                <h5> Excelium </h5>
+                                <hr />
+                                <p>For developers looking for top-tier features and performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /PRICING -->
+
+            <!-- QUOTE FORM -->
+            <section id="quote">
+                <div class="container text-center mb-60">
+                    <h3 class="m-0 fs-50 fw-300 wow fadeInUp" data-wow-delay="0.4s">
+                        <strong>Request a Quote</strong>
+                    </h3>
+                </div>
+                <div class="container">
+                    <form class="validate" id="quote-form">
+                        <!-- STEP 1 -->
+                        <div class="select-building-type card card-default">
+                            <div class="card-heading card-heading-transparent">
+                                <label class="card-title">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 1 |</span> Select Type of Building</h3>
+                                </label>
+                            </div>
+                            <div class="card-block" style="margin: 20px">
+                                <!-- Building type selection -->
+                                <select id="dropdown-building-type" name="building-type" class="form-control pointer required">
+                                    <option selected>---Select---</option>
+                                    <option id="residential" value="residential">Residential</option>
+                                    <option id="commercial" value="commercial">Commercial</option>
+                                    <option id="industrial" value="industrial">Industrial</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /STEP 1 -->
+
+                        <div id="data-sections">
+                            <!-- STEP 2 -->
+                            <div class="estimate-num-elv card card-default">
+                                <div class="card-heading step-description">
+                                    <h3>
+                                        <span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 2 |</span> Provide Building Information
+                                    </h3>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row" style="margin: 20px">
+                                        <!-- Division of the input fields for number of apartments -->
+                                        <div id="div-apartments" class="col-4">
+                                            <label><h4>Number of Apartments</h4>
+                                                <input type="number" min="1" max="1000" class="form-control" required>
+                                            </label>
+                                        </div>
+                                        <!-- Division of the input fields for number of floors -->
+                                        <div id="div-floors" class="col-4">
+                                            <label><h4>Number of Floors</h4>
+                                                <input type="number" min="1" max="1000" class="form-control" required>
+                                            </label>
+                                        </div>
+                                        <!-- Division of the input fields for maximum occupancy -->
+                                        <div id="div-occupancies" class="col-4">
+                                            <label><h4>Maximum Occupancy</h4>
+                                                <input type="number" min="1" max="1000" class="form-control" required>
+                                            </label>
+                                        </div>
+                                        <!-- Division of the input fields for number of elevators -->
+                                        <div id="div-elevators" class="col-4">
+                                            <label><h4>Number of Elevators</h4>
+                                                <input type="number" min="1" max="1000" class="form-control" required>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 20px">
+                                        <!-- Division of the read-only input fields for amount of elevators needed -->
+                                        <div class="col-6">
+                                            <label><h4 style="margin-bottom: 0">Number of Elevators Required (Minimum of 1):</h4>
+                                                <input id="output-elevators-needed" type="number" class="form-control" readonly>
+                                            </label>
+                                            <p style="margin-bottom: 0;">* With exception for commercial buildings</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /STEP 2 -->
+
+                            <!-- STEP 3 -->
+                            <div class="product-line card card-default">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 3 |</span> Select Product Line</h3>
+                                    <p style="margin-bottom: 0;">* Excluding tax and offers (if applicable)</p>
+                                    <p style="color: rgb(170, 69, 69); display: none; margin-bottom: 0;" id="warning-step-2">Complete Step 2 to Estimate Price</p>
+                                </div>
+                                <div class="card-block row">
+                                    <!-- Radio buttons for product line -->
+                                    <div class="col-4" style="display:flex; justify-content: center;">
+                                        <label class="standard radio">
+                                            <!-- Radio button standard -->
+                                            <input type="radio" id="tier-standard" name='radio-product-line'>
+                                            <i></i> STANDARD ✭
+                                        </label>
+                                    </div>
+                                    <div class="col-4" style="display:flex; justify-content: center;">
+                                        <label class="premium radio">
+                                            <!-- Radio button premium -->
+                                            <input type="radio" id="tier-premium" name='radio-product-line'>
+                                            <i></i> PREMIUM ✭✭
+                                        </label>
+                                    </div>
+                                    <div class="col-4" style="display:flex; justify-content: center;">
+                                        <label class="excelium radio">
+                                            <!-- Radio button excelium -->
+                                            <input type="radio" id="tier-excelium" name='radio-product-line'>
+                                            <i></i> EXCELIUM ✭✭✭
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /STEP 3 -->
+                            
+                            <!-- STEP 4 -->
+                            <div class="final-pricing-display card card-default">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 4 |</span> Estimated Pricing</h3>
+                                    <p style="margin-bottom: 0;">* Excluding tax and offers (if applicable)</p>
+                                    <p style="color: rgb(170, 69, 69); display: none; margin-bottom: 0;" id="warning-step-4">Complete Step 2 to Estimate Price</p>
+                                </div>
+                                <div class="card-block">
+                                    <div class="pricing-display row mega-price-table" style="margin: 20px">
+                                        <div class="col-md-3 col-sm-6 block">
+                                            <div class="pricing">
+                                                <div class="pricing-head">
+                                                    <h3>Unit Price</h3>
+                                                    <small>for Product Line</small>
+                                                </div>
+                                                <h4>
+                                                    <label>
+                                                        <!-- Read-only input fields for elevator unit price -->
+                                                        <input id="output-unit-price" type="text" class="form-control" style="background: none; text-align:center; border: none; font-size:x-large" readonly>
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 block">
+                                            <div class="pricing">
+                                                <div class="pricing-head">
+                                                    <h3>Elevator Cost</h3>
+                                                    <small>Based on no. of Elevator Required</small>
+                                                </div>
+                                                <h4>
+                                                    <label>
+                                                        <!-- Read-only input fields for elevator cost -->
+                                                        <input id="output-unit-total" type="text" class="form-control" style="background: none; text-align:center; border: none; font-size:x-large" readonly>
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 block">
+                                            <div class="pricing">
+                                                <div class="pricing-head">
+                                                    <h3>Installation Fee</h3>
+                                                    <small>Percent Elevator Cost</small>
+                                                </div>
+                                                <h4>
+                                                    <label>
+                                                        <!-- Read-only input fields for installation fees -->
+                                                        <input id="output-fees" type="text" class="form-control" style="background: none; text-align:center; border: none; font-size:x-large" readonly>
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 block">
+                                            <div class="pricing">
+                                                <div class="pricing-head">
+                                                    <h3>Total Cost</h3>
+                                                    <small>Elevator plus Installation Fee</small>
+                                                </div>
+                                                <h4>
+                                                    <label>
+                                                        <!-- Read-only input fields for total cost -->
+                                                        <input id="output-cost-total" type="text" class="form-control" style="background: none; text-align:center; border: none; font-size:x-large" readonly>
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /STEP 4 -->
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- /QUOTE FORM -->
+
+            <!-- TESTIMONIALS -->
+			<section id="testimonials" class="alternate">
+				<div class="container">
+                    <header class="text-center mb-30">
+                        <h2>Testimonials</h2>
+                        <p class="lead font-lato">Satisfied Customers with our Elevators</p>
+                        <hr />
+                    </header>
+                    <!-- Note: remove class="rounded" from the img for squared image! -->
+                    <div class="row mb-10">
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-bordered p-15">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/HomeTestimonnial1.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Our elevators have truly made a difference in our daily operations. Efficient and reliable!</p>
+                                    <cite>
+                                        Felicia Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-bordered p-15">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/HomeTestimonnial2.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Choosing these elevators for our office space was a wise decision. Excellent service!</p>
+                                    <cite>
+                                        John Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-bordered p-15">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/HomeTestimonnial3.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>We are highly satisfied with the elevators provided. Smooth operations and top-notch service!</p>
+                                    <cite>
+                                        Tom Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Note: remove class="rounded" from the img for squared image! -->
+                    <ul class="row clearfix testimonial-dotted list-unstyled">
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/HomeTestimonnial4.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Our elevators have truly made a difference in our daily operations. Efficient and reliable!</p>
+                                    <cite>
+                                        Dan Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/CorpTestimonial1.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>We are highly satisfied with the elevators provided. Smooth operations and top-notch service!</p>
+                                    <cite>
+                                        Mark Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/CorpTestimonial2.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Our elevators have truly made a difference in our daily operations. Efficient and reliable!</p>
+                                    <cite>
+                                        Stephan Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/CorpTestimonial3.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Choosing these elevators for our office space was a wise decision. Excellent service and performance!</p>
+                                    <cite>
+                                        Pamela Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/CorpTestimonial4.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>We are highly satisfied with the elevators provided. Smooth operations and top-notch service!</p>
+                                    <cite>
+                                        Simina Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-4">
+                            <div class="testimonial">
+                                <figure class="float-left">
+                                    <img class="rounded" src="assets/images/rocketElevators/CorpTestimonial5.png" alt="" />
+                                </figure>
+                                <div class="testimonial-content">
+                                    <p>Choosing these elevators for our office space was a wise decision. Excellent service and performance!</p>
+                                    <cite>
+                                        Mihaela Doe
+                                        <span>Company Ltd.</span>
+                                    </cite>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PARALLAX-->
+            <section class="alternate">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="wow fadeInUp m-0" data-wow-delay="0.3s">DOES ROCKET ELEVATORS CONVINCED YOU?</h2>
+                        <p class="lead font-lato fs-30 wow fadeInUp mb-60" data-wow-delay="0.5s">Building an elevator can make life easier, safer, and more convenient for everyone.</p>
+                        <div class="mt-30">
+                            <a href="index.html#contact_us" class="btn btn-3d btn-lg btn-blue"><i class="glyphicon glyphicon-user"></i>CONTACT US</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /PARALLAX -->
+
+            <!-- FOOTER -->
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <!-- col #1 -->
+                        <div class="col-md-8">
+                            <h3 class="letter-spacing-1">WHY ROCKET ELEVATORS?</h3>
+                            <!-- Small Description -->
+                            <p>When it comes to elevators, the best in the world offer a level of quality, safety, and performance that is unparalleled. From innovative designs to cutting-edge technology, Rocket Elevators represent the pinnacle of modern engineering and design.</p>
+                            <h2>1-800-887-2497</h2>
+                        </div>
+                        <!-- /col #1 -->
+
+                        <!-- col #2 -->
+                        <div class="col-md-4">
+                            <h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
+                            <!-- Newsletter Form -->
+                            <p>Subscribe to Our Newsletter to get Important News & Offers</p>
+                            <form class="validate" action="" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <label for="subscribe_letter"></label>
+                                    <input id="subscribe_letter" name="subscribe_letter" class="form-control required" placeholder="Enter your Email">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit">Subscribe</button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /Newsletter Form -->
+                        </div>
+                        <!-- /col #2 -->
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="container">
+                        <ul class="float-right m-0 list-inline mobile-block">
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li>&bull;</li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                        &copy; All Rights Reserved, Company LTD
+                    </div>
+                </div>
+            </footer>
+            <!-- /FOOTER -->
+
+        </div>
+        <!-- /WEBSITE WRAPPER -->
+
+        <!-- SCROLL TO TOP -->
+        <a href="#" id="toTop"></a>
+        <!-- /SCROLL TO TOP -->
+
+        <!-- PRELOADER -->
+        <div id="preloader">
+            <div class="inner">
+                <span class="loader"></span>
+            </div>
+        </div>
+        <!-- /PRELOADER -->
+
+        <!-- JAVASCRIPT FILES -->
+        <script>let plugin_path = 'assets/plugins/';</script>
+        <script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <!-- /JAVASCRIPT FILES -->
+
+        <!-- PAGE-LEVEL SCRIPTS -->
+        <script src="./assets/js/quote.js"></script>
+        <!-- /PAGE-LEVEL SCRIPTS -->
+
+    </body>
+</html>

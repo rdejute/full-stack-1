@@ -1,0 +1,43 @@
+/*#0a65a0 blueRocket */
+
+p {
+    font-family: 'Roboto Slab', serif !important;
+}
+
+#parallax span {
+    font-size: 50px;
+    color: #A94545;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+#portfolio h2, #news h2, #clients h2, #contact h2, #agents-list h2 {
+    color: #0a65a0 !important;
+}
+
+#team {
+    background-color: #0a65a0 !important;
+}
+
+#footer {
+    background: linear-gradient(to bottom, #0a65a0 0%, #A94545 100%) !important;
+}
+
+#team span {
+    color: black;
+    font-weight: bold;
+}
+
+#portfolio div.commercial, div.residential, div.awards {
+    margin-bottom: 20px;
+}
+
+#biz_address, #biz_phone, #biz_saturday {
+    font-weight: bolder;
+    font-size: 18px
+}
+
+#agents-list button {
+    font-weight: bolder;
+    color: white;
+}
