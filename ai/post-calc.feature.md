@@ -25,7 +25,7 @@
 Consolidate the existing residential-only quote calculator into a unified endpoint that handles residential, commercial, and industrial building type calculations. Quotes are persisted to MongoDB and calculation logic is extracted into reusable utility functions.
 
 ### What's Included (In Scope)
-✅ New POST `/calc/:buildingType` endpoint (replaces GET `/calc-residential`)  
+✅ New POST `/calc/:buildingType` endpoint  
 ✅ Calculation logic extracted to `/src/shared/resources/calculator.js`  
 ✅ Support for residential, commercial, industrial building types  
 ✅ Path parameter validation (building type)  

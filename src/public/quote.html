@@ -220,6 +220,28 @@
                             </div>
                             <!-- /STEP 2 -->
 
+                            <!-- CUSTOMER INFO -->
+                            <div class="customer-info card card-default">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 2.1 |</span> Customer Information</h3>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row" style="margin: 20px">
+                                        <div class="col-md-6">
+                                            <label><h4>Full Name</h4>
+                                                <input id="input-fullname" type="text" class="form-control" placeholder="John Doe" required>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><h4>Email Address</h4>
+                                                <input id="input-email" type="email" class="form-control" placeholder="john@example.com" required>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /CUSTOMER INFO -->
+
                             <!-- STEP 3 -->
                             <div class="product-line card card-default">
                                 <div class="card-heading card-heading-transparent">
@@ -323,6 +345,15 @@
                                 </div>
                             </div>
                             <!-- /STEP 4 -->
+                            <div class="quote-submit card card-default mt-3" style="margin: 20px;">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 5 |</span> Submit Your Quote Request</h3>
+                                </div>
+                                <div class="card-block text-center">
+                                    <button id="submit-quote" type="submit" class="btn btn-primary btn-lg">Calculate & Save Quote</button>
+                                    <div id="quote-feedback" class="alert mt-3" style="display:none"></div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

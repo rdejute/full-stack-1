@@ -1,68 +1,90 @@
 /* **********************
  * DATA & UTILITY IMPORTS
  ************************/
-import { calculResidentialElevators, calculPricing } from "../shared/utilities/calculs.js";
+import Quote from '../shared/db/mongodb/schemas/quote.schema.js';
+import { calculateResidentialElevators, calculateCommercialElevators, calculateIndustrialElevators, calculateCost } from '../shared/resources/calculator.js';
 
 /* ***************
  * ROUTE HANDLERS
  *****************/
 /**
- * GET - /calc-residential
- * Calculates elevator quote for residential buildings
+ * POST - /calc/:buildingType
+ * Calculates and persists a quote for residential, commercial, or industrial buildings
  */
-const calculResidential = (req, res) => {
+const postQuote = async (req, res) => {
     try {
-        // Parse and validate query parameters
-        const numberOfApartments = Number(Math.round(req.query.numberOfApartments));
-        const numberOfFloors = Number(Math.round(req.query.numberOfFloors));
-        const tier = req.query.tier?.toLowerCase();
+        const buildingType = req.buildingType || req.params.buildingType?.toLowerCase();
+        const { fullname, email } = req.body;
+        const apartments = req.query.apartments ? Number(req.query.apartments) : null;
+        const floors = req.query.floors ? Number(req.query.floors) : null;
+        const occupancy = req.query.occupancy ? Number(req.query.occupancy) : null;
+        const elevators = req.query.elevators ? Number(req.query.elevators) : null;
 
-        // Validate tier parameter
-        const validTiers = ['standard', 'premium', 'excelium'];
-        if (!validTiers.includes(tier)) {
-            return res.status(404).json({ 
-                error: 'Invalid tier',
-                message: `Tier must be one of: ${validTiers.join(', ')}` 
-            });
+        if (!fullname || typeof fullname !== 'string' || fullname.trim().length === 0) {
+            return res.status(400).json({ success: false, message: 'Full name is required', data: null });
         }
 
-        // Validate number inputs
-        if (!Number.isInteger(numberOfApartments) || !Number.isInteger(numberOfFloors)) {
-            return res.status(412).json({ 
-                error: 'Invalid input',
-                message: 'Number of apartments and floors must be whole numbers' 
-            });
+        if (!email || typeof email !== 'string' || email.trim().length === 0) {
+            return res.status(400).json({ success: false, message: 'Email is required', data: null });
         }
 
-        // Validate positive values
-        if (numberOfApartments <= 0 || numberOfFloors <= 0) {
-            return res.status(412).json({ 
-                error: 'Invalid input',
-                message: 'Number of apartments and floors must be greater than 0' 
-            });
+        const parsedEmail = email.trim();
+        const parsedFullname = fullname.trim();
+
+        const validateNumber = (value) => value !== null && (!Number.isInteger(value) || value < 0);
+        if (validateNumber(apartments) || validateNumber(floors) || validateNumber(occupancy) || validateNumber(elevators)) {
+            return res.status(400).json({ success: false, message: 'Numeric query parameters must be non-negative integers', data: null });
         }
 
-        // Calculate number of elevators required
-        const numElevators = calculResidentialElevators(numberOfApartments, numberOfFloors);
-        // Calculate total pricing based on number of elevators and tier
-        const pricing = calculTotalPricing(numElevators, tier);
+        let calculatedElevators;
 
-        res.status(200).json({
-            "Number of Elevators": numElevators,
-            "Unit Price": pricing.unitPrice,
-            "Elevator Cost": pricing.elevatorCost,
-            "Installation Fee": pricing.installationFee,
-            "Total Cost": pricing.totalCost,
+        if (buildingType === 'residential') {
+            if (apartments === null || floors === null || occupancy === null) {
+                return res.status(400).json({ success: false, message: 'apartments, floors, and occupancy are required for residential quotes', data: null });
+            }
+            calculatedElevators = calculateResidentialElevators(apartments, floors, occupancy);
+        } else if (buildingType === 'commercial') {
+            if (floors === null || occupancy === null) {
+                return res.status(400).json({ success: false, message: 'floors and occupancy are required for commercial quotes', data: null });
+            }
+            calculatedElevators = calculateCommercialElevators(floors);
+        } else if (buildingType === 'industrial') {
+            if (occupancy === null) {
+                return res.status(400).json({ success: false, message: 'occupancy is required for industrial quotes', data: null });
+            }
+            calculatedElevators = calculateIndustrialElevators(occupancy);
+        } else {
+            return res.status(400).json({ success: false, message: 'Unsupported building type', data: null });
+        }
+
+        const estimatedCost = calculateCost(calculatedElevators, buildingType);
+
+        const quote = await Quote.create({
+            fullname: parsedFullname,
+            email: parsedEmail,
+            buildingType,
+            apartments,
+            floors,
+            occupancy,
+            elevators,
+            calculatedElevators,
+            estimatedCost
+        });
+
+        return res.status(201).json({
+            success: true,
+            message: 'Quote calculated and saved successfully',
+            data: quote
         });
     } catch (error) {
-        console.error('CalcResidential error:', error.message);
-        res.status(500).json({ error: 'Server error calculating residential quote' });
+        console.error('PostQuote error:', error.message);
+        return res.status(500).json({ success: false, message: 'Failed to calculate quote', data: null });
     }
 };
 
 /* *******
  * EXPORTS
  *********/
-export default { 
-    calculResidential,
+export default {
+    postQuote
 };
