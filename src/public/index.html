@@ -821,10 +821,8 @@
 							<!-- /Alert Mandatory -->
 
 
-							<form id="contact-form">
+							<form id="contactForm">
 								<fieldset>
-									<!-- <input type="hidden" name="action" value="contact_send" /> -->
-
 									<div class="row">
 											<div class="col-md-4">
 												<label for="fullname">Full Name *</label>
@@ -836,37 +834,39 @@
 											</div>
 											<div class="col-md-4">
 												<label for="phone">Phone *</label>
-												<input id="phone" type="text" value="" class="form-control" name="phone" required>
+												<input id="phone" type="tel" value="" class="form-control" name="phone" required>
 											</div>
 									</div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="company_name">Company Name *</label>
-                                            <input id="company_name"  type="text" value="" class="form-control" name="company_name" required>
+                                            <label for="company_name">Company Name</label>
+                                            <input id="company_name"  type="text" value="" class="form-control" name="company_name">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="project_name">Project Name *</label>
-                                            <input id="project_name"  type="text" value="" class="form-control" name="project_name" required>
+                                            <label for="project_name">Project Name</label>
+                                            <input id="project_name"  type="text" value="" class="form-control" name="project_name">
                                         </div>
                                     </div>
 									<div class="row">
 											<div class="col-md-6">
-                                                <label for="project_desc">Project Description *</label>
-												<input id="project_desc"  type="text" value="" class="form-control" name="project_desc" required>
+                                                <label for="project_description">Project Description</label>
+												<textarea id="project_description" rows="3" class="form-control" name="project_description"></textarea>
 											</div>
 											<div class="col-md-6">
-												<label for="department">Department *</label>
-												<select id="department" class="form-control pointer" name="department" required>
+												<label for="department">Department</label>
+												<select id="department" class="form-control pointer" name="department">
 													<option value="">--- Select ---</option>
-													<option value="residential">Residential</option>
-													<option value="commercial">Commercial</option>
+													<option value="Sales">Sales</option>
+													<option value="Engineering">Engineering</option>
+													<option value="Operations">Operations</option>
+													<option value="Other">Other</option>
 												</select>
 											</div>
 									</div>
 									<div class="row">
 											<div class="col-md-12">
-												<label for="message">Message *</label>
-												<textarea id="message"  maxlength="10000" rows="8" class="form-control" name="message" required></textarea>
+												<label for="message">Message</label>
+												<textarea id="message"  maxlength="10000" rows="4" class="form-control" name="message"></textarea>
 											</div>
 									</div>
 									<div class="row">
@@ -886,6 +886,9 @@
 									</div>
 								</div>
 							</form>
+
+							<!-- Feedback Message -->
+							<div id="feedbackMessage" class="alert" style="display: none;"></div>
 
 						</div>
 
@@ -1090,7 +1093,7 @@
 		<!-- /REVOLUTION SLIDER -->
 
 		<!-- PAGE-LEVEL SCRIPTS -->
-		<script src="assets/js/contactForm.js"></script>
+		<script src="assets/js/contact-form.js"></script>
 		<!-- /PAGE-LEVEL SCRIPTS -->
 
 		<!-- NEWSLETTER SCRIPT -->

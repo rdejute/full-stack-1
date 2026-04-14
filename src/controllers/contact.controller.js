@@ -1,3 +1,13 @@
+/* **************************
+ * SCHEMAS IMPORT
+ ****************************/
+import contactSchema from '../shared/db/mongodb/schemas/contact.schema.js';
+
+/* **************
+ * UTILITY IMPORT
+ ************************/
+import { ResponseUtil } from '../shared/utilities/response-util.js';
+
 /* ***************
  * ROUTE HANDLERS
  *****************/
@@ -5,29 +15,57 @@
  * POST - /contact-us
  * Handles contact form submissions from the website
  */
-const contactUs = (req, res) => {
+const contactUs = async (req, res) => {
     try {
         // Extract form data from request body
-        const { first_name, last_name, message } = req.body;
+        const {
+            fullname,
+            email,
+            phone,
+            company_name,
+            project_name,
+            department,
+            project_description,
+            message,
+            file
+        } = req.body;
 
-        // Validate required fields
-        if (!first_name || !last_name || !message) {
-            return res.status(400).json({ 
-                error: 'Missing required fields',
-                message: 'first_name, last_name, and message are required' 
+        // Create new contact document
+        const contactData = {
+            fullname,
+            email,
+            phone,
+            company_name,
+            project_name,
+            department,
+            project_description,
+            message,
+            file: file || null
+        };
+
+        // Save to MongoDB
+        const savedContact = await contactSchema.create(contactData);
+
+        // Return success response
+        ResponseUtil.respondOk(res, savedContact, 'Contact submitted successfully');
+    } catch (error) {
+        console.error('ContactUs error:', error.message);
+
+        // Handle validation errors
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({
+                success: false,
+                message: Object.values(error.errors).map(err => err.message).join(', '),
+                data: null
             });
         }
 
-        // Simulate processing the contact form (e.g., saving to DB or sending email)
-        console.log(`Message from ${first_name} ${last_name}: ${message}`);
-
-        res.status(200).json({
-            message: `Thank you ${first_name} ${last_name} for contacting us.`,
-            received: { first_name, last_name, message }
+        // Handle other errors
+        res.status(500).json({
+            success: false,
+            message: 'Failed to save contact',
+            data: null
         });
-    } catch (error) {
-        console.error('ContactUs error:', error.message);
-        res.status(500).json({ error: 'Server error processing contact form' });
     }
 };
 
@@ -35,5 +73,5 @@ const contactUs = (req, res) => {
  * EXPORTS
  *********/
 export default {
-  contactUs,
+    contactUs,
 };
