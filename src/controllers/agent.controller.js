@@ -141,49 +141,44 @@ const getAllAgents = async (_req, res) => {
 };
 
 /**
- * GET - /agents-by-region
+ * GET - /agents-by-region/:region or /agents-by-region?region=
  * Returns all agents in a specific region, sorted by rating (descending)
  */
 const getAgentsByRegion = async (req, res) => {
     try {
-        // Extract and validate region query parameter
-        const region = req.query.region?.toLowerCase();
-        
-        // Check for missing region
+        const region = req.validatedRegion || req.params.region?.toLowerCase() || req.query.region?.toLowerCase();
+
         if (!region) {
             return res.status(400).json({ 
+                success: false,
                 error: 'Region parameter is required',
-                message: 'Please provide a region query parameter' 
+                message: 'Please provide a region as a path parameter or query parameter' 
             });
         }
 
-        // Validate region name
         const validRegions = ['north', 'south', 'east', 'west'];
         if (!validRegions.includes(region)) {
             return res.status(400).json({ 
+                success: false,
                 error: 'Invalid region',
-                message: `Region must be one of: ${validRegions.join(', ')}` 
+                message: `Invalid region. Allowed regions: ${validRegions.join(', ')}` 
             });
         }
 
-        // Find agents in the specified region sorted by rating
         const agentsSorted = await agentSchema.find({ region }).sort({ rating: -1 });
-        
-        // Check if any agents found in the region
-        if (agentsSorted.length === 0) {
-            return res.status(404).json({ 
-                error: `No agents found in region: ${region}`,
-                message: `No agents are currently assigned to the ${region} region` 
-            });
-        }
 
         res.status(200).json({ 
-            message: `Agents in ${region} region retrieved successfully`,
+            success: true,
+            message: `Found ${agentsSorted.length} agents in ${region}`,
             data: agentsSorted 
         });
     } catch (error) {
         console.error('GetAgentsByRegion error:', error.message);
-        res.status(500).json({ error: 'Server error retrieving agents by region' });
+        res.status(500).json({ 
+            success: false,
+            error: 'Server error retrieving agents by region',
+            message: error.message
+        });
     }
 };
 
