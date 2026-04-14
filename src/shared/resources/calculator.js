@@ -1,18 +1,23 @@
 /* *****************************
  * ELEVATOR CALCULATION HELPERS
  *****************************/
-export const calculateResidentialElevators = (apartments, floors, occupancy) => {
-    const occupancyFactor = occupancy > 2000 ? 1.5 : 1;
-    const baseElevators = Math.ceil(apartments / 6);
-    return Math.ceil(baseElevators * occupancyFactor);
+export const calculateResidentialElevators = (apartments, floors) => {
+    const apartmentsPerFloor = Math.ceil(apartments / floors);
+    const elevatorsPerBank = Math.ceil(apartmentsPerFloor / 6);
+    const elevatorBanks = Math.ceil(floors / 20);
+    return elevatorsPerBank * elevatorBanks;
 };
 
-export const calculateCommercialElevators = (floors) => {
-    return Math.ceil(floors / 3);
+export const calculateCommercialElevators = (floors, occupancy) => {
+    const totalOccupants = occupancy * floors;
+    const elevatorsPerBank = Math.ceil(totalOccupants / 200);
+    const elevatorBanks = Math.ceil(floors / 10);
+    const freightElevators = Math.ceil(floors / 10);
+    return elevatorsPerBank * elevatorBanks + freightElevators;
 };
 
-export const calculateIndustrialElevators = (occupancy) => {
-    return Math.ceil(occupancy / 500);
+export const calculateIndustrialElevators = (elevators) => {
+    return Number.isInteger(elevators) ? elevators : 0;
 };
 
 export const calculateCost = (elevators, buildingType) => {

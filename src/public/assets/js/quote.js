@@ -222,8 +222,8 @@ const handleQuoteSubmit = async (event) => {
   const occupancy = getInputValue('#div-occupancies input') || null;
   const elevators = getInputValue('#div-elevators input') || null;
 
-  if (type === 'residential' && (!apartments || !floors || !occupancy)) {
-    showQuoteFeedback('Apartments, floors, and occupancy are required for residential quotes.', 'error');
+  if (type === 'residential' && (!apartments || !floors)) {
+    showQuoteFeedback('Apartments and floors are required for residential quotes.', 'error');
     return;
   }
 
@@ -232,8 +232,8 @@ const handleQuoteSubmit = async (event) => {
     return;
   }
 
-  if (type === 'industrial' && !occupancy) {
-    showQuoteFeedback('Occupancy is required for industrial quotes.', 'error');
+  if (type === 'industrial' && !elevators) {
+    showQuoteFeedback('Number of elevators is required for industrial quotes.', 'error');
     return;
   }
 

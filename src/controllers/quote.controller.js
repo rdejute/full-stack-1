@@ -39,20 +39,20 @@ const postQuote = async (req, res) => {
         let calculatedElevators;
 
         if (buildingType === 'residential') {
-            if (apartments === null || floors === null || occupancy === null) {
-                return res.status(400).json({ success: false, message: 'apartments, floors, and occupancy are required for residential quotes', data: null });
+            if (apartments === null || floors === null) {
+                return res.status(400).json({ success: false, message: 'apartments and floors are required for residential quotes', data: null });
             }
-            calculatedElevators = calculateResidentialElevators(apartments, floors, occupancy);
+            calculatedElevators = calculateResidentialElevators(apartments, floors);
         } else if (buildingType === 'commercial') {
             if (floors === null || occupancy === null) {
                 return res.status(400).json({ success: false, message: 'floors and occupancy are required for commercial quotes', data: null });
             }
-            calculatedElevators = calculateCommercialElevators(floors);
+            calculatedElevators = calculateCommercialElevators(floors, occupancy);
         } else if (buildingType === 'industrial') {
-            if (occupancy === null) {
-                return res.status(400).json({ success: false, message: 'occupancy is required for industrial quotes', data: null });
+            if (elevators === null) {
+                return res.status(400).json({ success: false, message: 'number of elevators is required for industrial quotes', data: null });
             }
-            calculatedElevators = calculateIndustrialElevators(occupancy);
+            calculatedElevators = calculateIndustrialElevators(elevators);
         } else {
             return res.status(400).json({ success: false, message: 'Unsupported building type', data: null });
         }
