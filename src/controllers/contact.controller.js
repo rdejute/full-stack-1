@@ -25,7 +25,7 @@ const contactUs = async (req, res) => {
             company_name,
             project_name,
             department,
-            project_description,
+            project_desc,
             message,
             file
         } = req.body;
@@ -38,7 +38,7 @@ const contactUs = async (req, res) => {
             company_name,
             project_name,
             department,
-            project_description,
+            project_desc,
             message,
             file: file || null
         };

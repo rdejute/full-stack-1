@@ -12,6 +12,9 @@ async function handleFormSubmit(event) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
+    // Remove file field (can't be sent as JSON)
+    delete data.file;
+
     // Show loading state
     const submitButton = event.target.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
@@ -20,9 +23,12 @@ async function handleFormSubmit(event) {
 
     try {
         // Send POST request
-        const response = await fetch('/contact-us', {
+        const response = await fetch('http://127.0.0.1:3001/contact-us', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'mySecretKey123'
+            },
             body: JSON.stringify(data)
         });
 

@@ -26,7 +26,7 @@ Enable visitors to the Rocket Elevators website to submit contact information th
 
 ### What's Included (In Scope)
 ✅ Contact form on homepage (`index.html`)  
-✅ Form accepts 9 fields: fullname, email, phone, company_name, project_name, department, project_description, message, file  
+✅ Form accepts 9 fields: fullname, email, phone, company_name, project_name, department, project_desc, message, file  
 ✅ Validation middleware for email and phone  
 ✅ MongoDB schema for contact submissions  
 ✅ POST `/contact-us` API endpoint  
@@ -76,7 +76,7 @@ Enable visitors to the Rocket Elevators website to submit contact information th
     company_name: "",
     project_name: "",
     department: "",
-    project_description: "",
+    project_desc: "",
     message: "",
     file: null
   }
@@ -113,7 +113,7 @@ Enable visitors to the Rocket Elevators website to submit contact information th
   company_name: String (trimmed),
   project_name: String (trimmed),
   department: String (trimmed),
-  project_description: String,
+  project_desc: String,
   message: String,
   file: String or null (default: null),
   createdAt: Date (auto-set to now),
@@ -184,7 +184,7 @@ router.post(
     "company_name": "Genesis Solutions",
     "project_name": "Elevator Modernization",
     "department": "Engineering",
-    "project_description": "We need to upgrade our elevators",
+    "project_desc": "We need to upgrade our elevators",
     "message": "Please contact us ASAP",
     "file": null
   }
@@ -202,7 +202,7 @@ router.post(
       "company_name": "Genesis Solutions",
       "project_name": "Elevator Modernization",
       "department": "Engineering",
-      "project_description": "We need to upgrade our elevators",
+      "project_desc": "We need to upgrade our elevators",
       "message": "Please contact us ASAP",
       "file": null,
       "createdAt": "2024-01-15T10:30:00Z",
@@ -317,9 +317,9 @@ router.post(
   <label for="department">Department</label>
   <select id="department" name="department">
     <option value="">Select Department</option>
-    <option value="Sales">Sales</option>
-    <option value="Engineering">Engineering</option>
-    <option value="Operations">Operations</option>
+    <option value="Sales">Residential</option>
+    <option value="Engineering">Commercial</option>
+    <option value="Operations">Industrial</option>
     <option value="Other">Other</option>
   </select>
 

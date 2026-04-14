@@ -41,7 +41,7 @@ const contactSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Department cannot exceed 50 characters']
     },
-    project_description: {
+    project_desc: {
         type: String,
         maxlength: [1000, 'Project description cannot exceed 1000 characters']
     },

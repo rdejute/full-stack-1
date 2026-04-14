@@ -23,11 +23,23 @@ export const validatePhone = (req, res, next) => {
     try {
         const { phone } = req.body;
 
-        // Check if phone exists and is valid
-        if (!phone || !validator.isMobilePhone(phone)) {
+        // Check if phone exists
+        if (!phone) {
             return res.status(400).json({
                 success: false,
                 message: 'Invalid phone number',
+                data: null
+            });
+        }
+
+        // Remove spaces, dashes, parentheses, and + for validation
+        const cleanedPhone = phone.replace(/[\s\-\(\)\+]/g, '');
+
+        // Validate: must be exactly 10 digits (North American format)
+        if (!/^\d{10}$/.test(cleanedPhone)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid phone number - must be 10 digits',
                 data: null
             });
         }

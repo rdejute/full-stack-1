@@ -9,6 +9,7 @@ dotenv.config();
  * CORE DEPENDENCIES
  *******************/
 import express from "express";
+import cors from 'cors';
 
 
 /* ****************
@@ -59,6 +60,10 @@ try {
  * GLOBAL MIDDLEWARE SETUP
  *************************/
 app.use(express.json());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500',
+    credentials: true
+}));
 app.use(express.static('./src/public')) //serves our static genesis project
 app.use(apiLogger);
 app.use(authHeader);
