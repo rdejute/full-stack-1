@@ -26,23 +26,18 @@ const hello = async (_req, res) => {
 
 /**
  * GET - /status
- * Returns server status information including port and environment
+ * Returns server status information using Response Utility format
  */
 const status = (_req, res) => {
-    res.status(200).send(`Server listening on port ${PORT} in the ${ENV} environment`)
+    ResponseUtil.respondOk(res, { status: 'ok' }, 'Server is running');
 };
 
 /**
  * GET - /error
- * Simulates an error response for front-end testing
+ * Simulates an error response for front-end testing using Response Utility format
  */
 const error = (_req, res) => {
-    try {
-        // Intentionally throw an error to simulate server problems
-        throw new Error('Internal Server Error - This is a simulated error response for front-end development purposes.');
-    } catch (error) {
-        ResponseUtil.respondError(res, 500, null, error.message);
-    }
+    ResponseUtil.respondError(res, 500, null, 'This is a test error');
 };
 
 
