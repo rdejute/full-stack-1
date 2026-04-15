@@ -1,5 +1,7 @@
 const RocketApiConfig = (() => {
-  const getBaseUrl = () => window.location.origin;
+  const getBaseUrl = () => {
+    return 'http://localhost:3004';
+  };
 
   const buildHeaders = ({ json = true, requireAuth = false } = {}) => {
     const headers = {};
@@ -9,7 +11,7 @@ const RocketApiConfig = (() => {
     }
 
     if (requireAuth) {
-      headers.Authorization = 'Bearer mySecretKey123'; // Replace <your_token_here> with the actual token value
+      headers.Authorization = 'mySecretKey123'; // Replace <your_token_here> with the actual token value
     }
 
     return headers;
@@ -20,3 +22,5 @@ const RocketApiConfig = (() => {
     buildHeaders,
   };
 })();
+
+window.RocketApiConfig = RocketApiConfig;
