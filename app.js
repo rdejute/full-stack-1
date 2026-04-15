@@ -121,3 +121,8 @@ process.on('SIGINT', async () => {
         process.exit(1);
     }
 });
+
+/* *****************
+ * EXPORT APP FOR TESTING
+ *******************/
+export default app;
