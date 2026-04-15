@@ -1,14 +1,14 @@
-# Rocket Genesis API
+# Rocket Elevators Full-Stack Application
 
 ## Description
-Rocket Genesis API is a Node.js and Express project for a fictional Rocket Elevators business. It serves two roles:
+This is a full-stack web application for Rocket Elevators, a fictional elevator company. The application serves as both a marketing website and a data management system with the following capabilities:
 
-1. It exposes backend API endpoints for quotes, contact form submissions, agents, and regions.
-2. It serves the static frontend files found in `src/public` so the website can be opened from the same server.
+1. **Public Website**: Multi-page marketing site showcasing residential, commercial, and industrial elevator services
+2. **API Backend**: RESTful endpoints for contact forms, quote calculations, agent management, and business analytics
+3. **Data Persistence**: MongoDB integration for storing contacts, quotes, agents, and regional data
+4. **Authentication**: Header-based authorization protecting sensitive business endpoints
 
-This project uses MongoDB to store contacts, quotes, agents, and region data. Most API routes are protected by a shared `Authorization` header.
-
-If you are opening this project for the first time: think of it as an Express server that powers an elevator company website and stores business data in MongoDB.
+The application demonstrates modern full-stack development practices including separation of concerns, standardized API responses, comprehensive testing, and responsive frontend design.
 
 ## Tech Stack
 - Node.js
@@ -34,10 +34,13 @@ If you are opening this project for the first time: think of it as an Express se
 ├── CONCEPTS.md                         # Course/project notes file
 ├── ai/                                 # Project planning/spec notes used during development
 ├── test/                               # Automated tests
-│   └── controllers/health.test.js      # Basic unit test for the health controller
+│   └── controllers/                  # Unit tests for API endpoints
+│       ├── health.test.js           # Tests for /status and /error endpoints
+│       ├── status.test.js           # Comprehensive tests for /status endpoint
+│       └── error.test.js            # Comprehensive tests for /error endpoint
 └── src/
     ├── controllers/                    # Route handler logic
-    │   ├── health.controller.js        # Public test/status endpoints
+    │   ├── health.controller.js        # Public test/status endpoints using Response Utility
     │   ├── quote.controller.js         # Quote calculation and persistence
     │   ├── contact.controller.js       # Contact form persistence
     │   ├── agent.controller.js         # Agent CRUD/read operations
@@ -45,12 +48,34 @@ If you are opening this project for the first time: think of it as an Express se
     ├── routes/                         # Route definitions grouped by access level
     │   ├── open/health.routes.js       # Public routes: /hello, /status, /error
     │   └── protected/                  # Protected routes requiring Authorization
+    │       ├── contact.routes.js        # Contact form submission
+    │       ├── agent.routes.js          # Agent management endpoints
+    │       ├── quote.routes.js          # Quote calculation endpoints
+    │       └── region.routes.js          # Regional analytics endpoints
     ├── shared/
     │   ├── db/mongodb/                 # MongoDB connection manager and Mongoose schemas
+    │   │   ├── mongo-manager.js        # Database connection management
+    │   │   └── schemas/              # Data models
+    │   │       ├── contact.schema.js    # Contact form data structure
+    │   │       └── agent.schema.js     # Agent data structure
     │   ├── middleware/                 # Auth, validation, and request logging middleware
-    │   ├── resources/calculator.js     # Elevator and quote cost calculation helpers
+    │   │   ├── auth-header.middleware.js  # Authorization header validation
+    │   │   └── regionValidator.js        # Region parameter validation
     │   └── utilities/                  # Shared response/helper utilities
+    │       └── response-util.js          # Standardized API response format
     └── public/                         # Static website files and assets served by Express
+        ├── index.html                  # Homepage with contact form
+        ├── residential.html             # Residential services page with agent table
+        ├── commercial.html              # Commercial services page
+        ├── industrial.html               # Industrial services page
+        └── assets/
+            ├── js/
+            │   ├── api-config.js      # Central API configuration
+            │   ├── contact-form.js    # Contact form handling
+            │   ├── agentsList.js      # Agent table functionality
+            │   └── newsletter.js       # Newsletter subscription
+            ├── css/                  # Styling files
+            └── images/               # Marketing images
 ```
 
 ## Installation / Setup Instructions
@@ -82,14 +107,16 @@ npm start
 ```bash
 npm test
 ```
-
-Note: only a small health-controller test is included right now. There is not yet full automated coverage for all endpoints.
+Comprehensive unit test suite covering:
+- `/status` endpoint with 5 test cases covering HTTP status, response format, and data structure
+- `/error` endpoint with 5 test cases covering error handling and response format
+- Tests validate Response Utility consistency across all endpoints
+- All tests use Mocha, Chai, and Chai-HTTP for HTTP testing
 
 ## Environment Variables
 The project uses a root `.env` file.
 
 Required variables:
-
 ```env
 PORT=3004
 ENV_NAME=development
@@ -147,30 +174,37 @@ Error example:
 - This route has no expected validation error path in normal use.
 
 #### `GET /status`
-Purpose: returns a plain-text server status message.
+Purpose: returns server status using standardized Response Utility format.
 
 Success example:
 ```http
 GET /status
+Authorization: your_api_secret_here
 ```
 
-Example response:
-```text
-Server listening on port 3004 in the development environment
+Success response:
+```json
+{
+  "type": "success",
+  "data": {
+    "status": "ok"
+  },
+  "message": "Server is running"
+}
 ```
 
 Error example:
 - This route has no custom validation error path in normal use.
 
 #### `GET /error`
-Purpose: intentionally simulates a server error for frontend testing.
+Purpose: intentionally simulates a server error for frontend testing using Response Utility format.
 
 Response example:
 ```json
 {
   "type": "error",
   "data": null,
-  "message": "Internal Server Error - This is a simulated error response for front-end development purposes."
+  "message": "This is a test error"
 }
 ```
 
@@ -356,9 +390,16 @@ Error example:
 ```
 
 #### `POST /agent-create`
-Purpose: create a new agent.
+Purpose: create a new agent with validation and duplicate checking.
 
 Request example:
+```http
+POST /agent-create
+Authorization: your_api_secret_here
+Content-Type: application/json
+```
+
+Request body:
 ```json
 {
   "first_name": "Sarah",
@@ -373,6 +414,7 @@ Request example:
 Success example:
 ```json
 {
+  "type": "success",
   "message": "Agent created successfully",
   "data": {
     "first_name": "Sarah",
@@ -390,8 +432,9 @@ Success example:
 Error example:
 ```json
 {
-  "error": "Agent already exists",
-  "message": "An agent with this email already exists"
+  "type": "error",
+  "data": null,
+  "message": "Agent already exists"
 }
 ```
 
@@ -399,9 +442,15 @@ Error example:
 Purpose: return all agents sorted by `last_name`.
 
 Success example:
+```http
+GET /agents
+Authorization: your_api_secret_here
+```
+
+Success response:
 ```json
 {
-  "message": "Agents retrieved successfully",
+  "type": "success",
   "data": [
     {
       "_id": "661c1f2f2c1a2b3c4d5e6f72",
@@ -410,15 +459,17 @@ Success example:
       "email": "sarah@example.com",
       "region": "north"
     }
-  ]
+  ],
+  "message": "Agents retrieved successfully"
 }
 ```
 
 Error example:
 ```json
 {
-  "error": "No agents found",
-  "message": "No agents are currently in the system"
+  "type": "error",
+  "data": null,
+  "message": "No agents found"
 }
 ```
 
@@ -428,12 +479,13 @@ Purpose: return agents in one region sorted by rating descending.
 Success example:
 ```http
 GET /agents-by-region/north
+Authorization: your_api_secret_here
 ```
 
+Success response:
 ```json
 {
-  "success": true,
-  "message": "Found 2 agents in north",
+  "type": "success",
   "data": [
     {
       "first_name": "Sarah",
@@ -441,16 +493,17 @@ GET /agents-by-region/north
       "region": "north",
       "rating": 92
     }
-  ]
+  ],
+  "message": "Found 2 agents in north"
 }
 ```
 
 Error example:
 ```json
 {
-  "success": false,
-  "error": "Invalid region",
-  "message": "Invalid region. Allowed regions: North, South, East, West"
+  "type": "error",
+  "data": null,
+  "message": "Invalid region. Allowed regions: north, south, east, west"
 }
 ```
 
@@ -690,8 +743,9 @@ Current production limitation:
 - `npm test` only covers a basic health controller scenario.
 
 ## Author
-The author is not defined in `package.json`.
+- Raina DeJute -- Student | CodeBoxx Full-Stack Development Program
+- Github URL: https://github.com/rdejute/full-stack-1.git
+- LinkedIn URL: www.linkedin.com/in/rainadejute
+  - LinkedIn Updates: I updated my LinkedIn profile to better reflect my current focus as a Full-Stack Developer in training at CodeBoxx. Changes include a refreshed cover image, an updated headline highlighting my technical stack and role, and a revised experience section detailing my full-stack development work and project experience. I also improved my skills section to more accurately represent my technical abilities, rewrote my summary to better communicate my interests in frontend design and full-stack development, and updated my work availability settings to indicate that I am open to recruiters.
 
-If you want this section to name a specific student, team, or company, update:
-- `package.json` → `author`
-- this `README.md`
+
