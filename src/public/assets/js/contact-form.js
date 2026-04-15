@@ -23,12 +23,9 @@ async function handleFormSubmit(event) {
 
     try {
         // Send POST request
-        const response = await fetch('http://127.0.0.1:3001/contact-us', {
+        const response = await fetch(`${window.RocketApiConfig.getBaseUrl()}/contact-us`, {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': 'mySecretKey123'
-            },
+            headers: window.RocketApiConfig.buildHeaders({ json: true, requireAuth: true }),
             body: JSON.stringify(data)
         });
 

@@ -1,0 +1,263 @@
+{
+  "info": {
+    "name": "Rocket Elevators API",
+    "description": "Postman collection for all Rocket Elevators API endpoints. All parameters are pre-set for immediate testing.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hello",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/hello",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["hello"]
+        }
+      }
+    },
+    {
+      "name": "Status",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/status",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["status"]
+        }
+      }
+    },
+    {
+      "name": "Get Agents",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/agents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["agents"]
+        }
+      }
+    },
+    {
+      "name": "Submit Contact Form",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fullname\":\"John Doe\",\"email\":\"john@example.com\",\"phone\":\"5145551234\",\"message\":\"Test contact message\"}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/contact-us",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["contact-us"]
+        }
+      }
+    },
+    {
+      "name": "Calculate Residential Quote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fullname\":\"Jane Smith\",\"email\":\"jane@example.com\"}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/calc/residential?apartments=50&floors=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["calc", "residential"],
+          "query": [
+            {
+              "key": "apartments",
+              "value": "50"
+            },
+            {
+              "key": "floors",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Calculate Commercial Quote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fullname\":\"Bob Johnson\",\"email\":\"bob@example.com\"}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/calc/commercial?floors=5&occupancy=100",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["calc", "commercial"],
+          "query": [
+            {
+              "key": "floors",
+              "value": "5"
+            },
+            {
+              "key": "occupancy",
+              "value": "100"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Calculate Industrial Quote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fullname\":\"Alice Brown\",\"email\":\"alice@example.com\"}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/calc/industrial?elevators=3",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["calc", "industrial"],
+          "query": [
+            {
+              "key": "elevators",
+              "value": "3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Region Info",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region?region=north",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["region"],
+          "query": [
+            {
+              "key": "region",
+              "value": "north"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Region Average",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region-avg?region=north",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["region-avg"],
+          "query": [
+            {
+              "key": "region",
+              "value": "north"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

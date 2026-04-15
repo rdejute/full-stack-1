@@ -8,7 +8,7 @@ import { ResponseUtil } from '../shared/utilities/response-util.js';
 * ENVIRONMENT VARIABLES
 ***********************/
 const PORT = process.env.PORT || 3004;
-const ENV = process.env.ENV_NAME || 'local';
+const ENV = process.env.ENV_NAME || process.env.ENV || 'local';
 
 
 /* ***************
@@ -41,12 +41,7 @@ const error = (_req, res) => {
         // Intentionally throw an error to simulate server problems
         throw new Error('Internal Server Error - This is a simulated error response for front-end development purposes.');
     } catch (error) {
-        ResponseUtil.respondError(
-            res,
-            500,
-            null,
-            error.message
-        );
+        ResponseUtil.respondError(res, 500, null, error.message);
     }
 };
 

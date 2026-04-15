@@ -238,7 +238,7 @@ const handleQuoteSubmit = async (event) => {
   }
 
   const queryString = buildQueryString({ apartments, floors, occupancy, elevators });
-  const url = `http://localhost:3004/calc/${type}${queryString ? `?${queryString}` : ''}`;
+  const url = `${window.RocketApiConfig.getBaseUrl()}/calc/${type}${queryString ? `?${queryString}` : ''}`;
 
   const submitButton = document.getElementById('submit-quote');
   if (submitButton) {
@@ -249,10 +249,7 @@ const handleQuoteSubmit = async (event) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'mySecretKey123'
-      },
+      headers: window.RocketApiConfig.buildHeaders({ json: true, requireAuth: true }),
       body: JSON.stringify({ fullname, email })
     });
 

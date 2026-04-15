@@ -1,6 +1,3 @@
-const API_BASE_URL = 'http://localhost:3004';
-const AUTH_TOKEN = 'mySecretKey123';
-
 const regionSelect = document.getElementById('region-select');
 const tableBody = document.getElementById('agent-table-body');
 const tableMessage = document.getElementById('agent-table-message');
@@ -94,11 +91,8 @@ const renderAgents = (agents) => {
 
 const fetchAgents = async (region) => {
     const endpoint = region === 'all' ? '/agents' : `/agents-by-region/${encodeURIComponent(region)}`;
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-        headers: {
-            Authorization: AUTH_TOKEN,
-            'Content-Type': 'application/json'
-        }
+    const response = await fetch(`${window.RocketApiConfig.getBaseUrl()}${endpoint}`, {
+        headers: window.RocketApiConfig.buildHeaders({ json: true, requireAuth: true })
     });
 
     const responseBody = await response.json();
