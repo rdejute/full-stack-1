@@ -3,10 +3,10 @@
  * Provides consistent response structures for success and error cases.
  */
 export const ResponseUtil = {
-  respondOk: (res,data,message)=>{
-    res.json({type:'success',data,message});
+  respondOk: (res, data, message, status = 200) => {
+    res.status(status).json({ type: 'success', data, message });
   },
-  respondError: (res,data,message)=>{
-    res.json({type:'error',data,message});
+  respondError: (res, status = 500, data = null, message = 'An unexpected error occurred') => {
+    res.status(status).json({ type: 'error', data, message });
   }
 };

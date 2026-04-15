@@ -196,7 +196,7 @@
                                         </div>
                                         <!-- Division of the input fields for maximum occupancy -->
                                         <div id="div-occupancies" class="col-4">
-                                            <label><h4>Maximum Occupancy</h4>
+                                            <label><h4>Maximum Occupancy per Floor</h4>
                                                 <input type="number" min="1" max="1000" class="form-control" required>
                                             </label>
                                         </div>
@@ -219,6 +219,28 @@
                                 </div>
                             </div>
                             <!-- /STEP 2 -->
+
+                            <!-- CUSTOMER INFO -->
+                            <div class="customer-info card card-default">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 2.1 |</span> Customer Information</h3>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row" style="margin: 20px">
+                                        <div class="col-md-6">
+                                            <label><h4>Full Name</h4>
+                                                <input id="input-fullname" type="text" class="form-control" placeholder="John Doe" required>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><h4>Email Address</h4>
+                                                <input id="input-email" type="email" class="form-control" placeholder="john@example.com" required>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /CUSTOMER INFO -->
 
                             <!-- STEP 3 -->
                             <div class="product-line card card-default">
@@ -323,6 +345,15 @@
                                 </div>
                             </div>
                             <!-- /STEP 4 -->
+                            <div class="quote-submit card card-default mt-3" style="margin: 20px;">
+                                <div class="card-heading card-heading-transparent">
+                                    <h3><span style="color:rgb(10, 101, 160); font-weight:bolder">STEP 5 |</span> Submit Your Quote Request</h3>
+                                </div>
+                                <div class="card-block text-center">
+                                    <button id="submit-quote" type="submit" class="btn btn-primary btn-lg">Calculate & Save Quote</button>
+                                    <div id="quote-feedback" class="alert mt-3" style="display:none"></div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -476,7 +507,7 @@
             <section class="alternate">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="wow fadeInUp m-0" data-wow-delay="0.3s">DOES ROCKET ELEVATORS CONVINCED YOU?</h2>
+                        <h2 class="wow fadeInUp m-0" data-wow-delay="0.3s">DID ROCKET ELEVATORS CONVINCE YOU?</h2>
                         <p class="lead font-lato fs-30 wow fadeInUp mb-60" data-wow-delay="0.5s">Building an elevator can make life easier, safer, and more convenient for everyone.</p>
                         <div class="mt-30">
                             <a href="index.html#contact_us" class="btn btn-3d btn-lg btn-blue"><i class="glyphicon glyphicon-user"></i>CONTACT US</a>
@@ -554,6 +585,7 @@
         <!-- /JAVASCRIPT FILES -->
 
         <!-- PAGE-LEVEL SCRIPTS -->
+        <script src="./assets/js/api-config.js"></script>
         <script src="./assets/js/quote.js"></script>
         <!-- /PAGE-LEVEL SCRIPTS -->
 
