@@ -1,23 +1,19 @@
-/* **************************
- * SCHEMAS IMPORT
- ****************************/
 import contactSchema from '../shared/db/mongodb/schemas/contact.schema.js';
-
-/* **************
- * UTILITY IMPORT
- ************************/
 import { ResponseUtil } from '../shared/utilities/response-util.js';
 
-/* ***************
- * ROUTE HANDLERS
- *****************/
 /**
- * POST - /contact-us
  * Handles contact form submissions from the website
+ * 
+ * Processes incoming contact requests, validates data through Mongoose schema,
+ * and persists contact information to MongoDB for lead generation.
+ * 
+ * @param {Request} req - Express request object with contact form data
+ * @param {Response} res - Express response object
  */
 const contactUs = async (req, res) => {
     try {
-        // Extract form data from request body
+        // Destructure required fields from request body
+        // Mongoose schema will validate required fields and data types
         const {
             fullname,
             email,
@@ -30,7 +26,8 @@ const contactUs = async (req, res) => {
             file
         } = req.body;
 
-        // Create new contact document
+        // Prepare contact data for database insertion
+        // File field is optional, default to null if not provided
         const contactData = {
             fullname,
             email,
@@ -43,15 +40,17 @@ const contactUs = async (req, res) => {
             file: file || null
         };
 
-        // Save to MongoDB
+        // Persist contact to MongoDB with automatic validation
+        // Mongoose will throw ValidationError if required fields are missing
         const savedContact = await contactSchema.create(contactData);
 
-        // Return success response
+        // Return standardized success response with saved contact data
         ResponseUtil.respondOk(res, savedContact, 'Contact submitted successfully');
     } catch (error) {
         console.error('ContactUs error:', error.message);
 
-        // Handle validation errors
+        // Handle Mongoose validation errors specifically
+        // Returns detailed validation messages to help frontend fix issues
         if (error.name === 'ValidationError') {
             return res.status(400).json({
                 success: false,
@@ -60,7 +59,8 @@ const contactUs = async (req, res) => {
             });
         }
 
-        // Handle other errors
+        // Handle database connection or other server errors
+        // Generic error message to avoid exposing internal details
         res.status(500).json({
             success: false,
             message: 'Failed to save contact',
@@ -69,9 +69,6 @@ const contactUs = async (req, res) => {
     }
 };
 
-/* *******
- * EXPORTS
- *********/
 export default {
     contactUs,
 };
