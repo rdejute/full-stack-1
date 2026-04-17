@@ -116,94 +116,90 @@ Frontend Updates UI
 ---
 
 ## Repository Structure
-
 ```
-project-name/
+rocket-elevators/
 │
-├── ai/                                    # AI Specifications (READ FIRST)
-│   ├── ai-spec.md                        # This document
-│   └── features/
-│       ├── contact-form.feature.md
-│       ├── middleware.feature.md
-│       ├── agent-table.feature.md
-│       ├── get-calc.feature.md
-│       └── unit-test.feature.md
+├── 📋 ai/                                          # AI Specifications & Feature Docs
+│   ├── ai-spec.md                                # Main architecture specification
+│   ├── contact-form.feature.md                   # Contact form validation spec
+│   ├── middleware.feature.md                     # Middleware validation chain spec
+│   ├── agent-table.feature.md                    # Agent table fetching spec
+│   ├── post-calc.feature.md                      # Quote calculation formula spec
+│   └── unit-test.feature.md                      # Unit test coverage spec
 │
-├── src/
-│   ├── features/
-│   │   └── controllers/                  # Handle HTTP requests
-│   │       ├── contactController.js
-│   │       ├── agentController.js
-│   │       ├── quoteController.js
-│   │       ├── statusController.js
-│   │       └── errorController.js
+├── 🚀 src/                                        # Main Application Source Code
 │   │
-│   ├── public/                           # Frontend (HTML/CSS/JS)
-│   │   ├── index.html                   # Homepage with contact form
-│   │   ├── residential.html              # Residential page with agent table
-│   │   ├── commercial.html               # Commercial page with quote form
-│   │   ├── industrial.html               # Industrial page with quote form
-│   │   ├── assets/
-│   │   │   ├── css/
-│   │   │   │   └── style.css
-│   │   │   └── js/
-│   │   │       ├── contact-form.js      # Contact form handler
-│   │   │       ├── agent-table.js       # Agent table handler
-│   │   │       └── quote-form.js        # Quote form handler
-│   │   ├── manifest.json
-│   │   └── favicon.ico
+│   ├── 📨 controllers/                           # Request handlers business logic
+│   │   ├── contact.controller.js                # Process form submissions
+│   │   ├── agent.controller.js                  # Retrieve agents from database
+│   │   ├── quote.controller.js                  # Calculate quote costs
+│   │   └── health.controller.js                 # Server status check endpoint
 │   │
-│   ├── routes/
-│   │   ├── contact.routes.js             # Contact form routes
-│   │   ├── agent.routes.js               # Agent routes
-│   │   ├── quote.routes.js               # Quote calculator routes
-│   │   ├── status.routes.js              # Status/health routes
-│   │   └── error.routes.js               # Error handling routes
+│   ├── 🎨 public/                               # Frontend HTML CSS JavaScript
+│   │   ├── index.html                           # Homepage contact form
+│   │   ├── residential.html                     # Residential page agents
+│   │   ├── commercial.html                      # Commercial page quote
+│   │   ├── industrial.html                      # Industrial page quote
+│   │   └── assets/
+│   │       ├── css/
+│   │       │   └── style.css                    # Main website styling
+│   │       └── js/
+│   │           ├── api-config.js                # Centralized API configuration
+│   │           ├── contact-form.js              # Contact form submission handler
+│   │           ├── agentsList.js                # Agent table data fetching
+│   │           └── newsletter.js                # Newsletter subscription handler
 │   │
-│   └── shared/
-│       ├── db/
-│       │   └── mongodb/
-│       │       ├── conn.js               # MongoDB connection
-│       │       └── schemas/
-│       │           ├── contactSchema.js
-│       │           ├── agentSchema.js
-│       │           └── quoteSchema.js
-│       │
-│       ├── middleware/
-│       │   ├── validation/
-│       │   │   ├── emailValidator.js    # Email validation
-│       │   │   ├── phoneValidator.js    # Phone validation
-│       │   │   ├── regionValidator.js   # Region validation
-│       │   │   └── buildingTypeValidator.js  # Building type validation
-│       │   └── middleware.js
-│       │
-│       ├── resources/
-│       │   └── calculator.js             # Calculation logic (residential, commercial, industrial)
-│       │
-│       └── utils/
-│           ├── response-util.js          # Response formatting
-│           └── base-util.js              # Async wrapper
+│   ├── 🛣️ routes/                               # API endpoint definitions
+│   │   ├── open/
+│   │   │   └── health.routes.js                # Public health check routes
+│   │   └── protected/
+│   │       ├── contact.routes.js               # Contact form POST endpoint
+│   │       ├── agent.routes.js                 # Agent retrieval GET endpoints
+│   │       ├── quote.routes.js                 # Quote calculation POST endpoint
+│   │       └── region.routes.js                # Region list GET endpoint
+│   │
+│   ├── 🔧 shared/                               # Reusable modules everywhere
+│   │   ├── middleware/                          # Input validation enforcement
+│   │   │   ├── emailValidator.js               # Validate email format
+│   │   │   ├── phoneValidator.js               # Validate phone format
+│   │   │   ├── regionValidator.js              # Validate region field
+│   │   │   ├── buildingTypeValidator.js        # Validate building type
+│   │   │   ├── agentValidator.js               # Validate agent data
+│   │   │   ├── contactValidator.js             # Validate contact fields
+│   │   │   └── quoteValidator.js               # Validate quote data
+│   │   ├── utilities/
+│   │   │   ├── response-util.js                # Standardize API responses
+│   │   │   └── base-util.js                    # Async wrapper error handling
+│   │   └── db/mongodb/
+│   │       ├── mongo-manager.js                # MongoDB connection management
+│   │       └── schemas/
+│   │           ├── contact.schema.js           # Contact data structure definition
+│   │           ├── agent.schema.js             # Agent data structure definition
+│   │           └── quote.schema.js             # Quote data structure definition
+│   │
+│   ├── 🧮 resources/
+│   │   └── calculator.js                       # Calculate costs per building
+│   │
+│   └── app.js                                   # Express server configuration
 │
-├── test/
-│   ├── status.test.js                   # Unit tests for /status
-│   ├── error.test.js                    # Unit tests for /error
-│   └── hello.test.js                    # Reference test (study this)
+├── 🧪 test/                                    # Unit integration tests
+    ├── agent.test.js                           # Test agent retrieval logic
+    ├── contact.test.js                         # Test contact form saving
+    ├── error.test.js                           # Test error handling scenarios
+    ├── health.test.js                          # Test /health endpoint
+    ├── hello.test.js                           # Reference test structure
+    ├── quote.test.js                           # Test quote calculation
+    ├── status.test.js                          # Test /status endpoint response
+    └── validation.test.js                      # Test middleware validators
 │
-├── LeetCode-Challenges/
-│   ├── sleep.png
-│   ├── add-two-promises.png
-│   ├── promise-time-limit.png
-│   ├── design-hashmap.png
-│   └── design-hashset.png
-│
-├── app.js                                # Main Express app
-├── package.json                          # Dependencies & scripts
-├── .env                                  # Environment variables
-├── .gitignore                            # Git ignore rules
-├── README.md                             # Project documentation
-├── CONCEPTS.md                           # 3 challenging concepts
-├── PostmanCollection.json                # API testing collection
-└── submission-summary.md                 # Submission info (NOT in GitHub)
+├── 📦 CONFIGURATION FILES
+│   ├── package.json                             # Dependencies scripts metadata
+│   ├── .env                                     # Environment variables secrets
+│   ├── .gitignore                               # Files git should ignore
+│   ├── README.md                                # Project setup documentation
+│   ├── CONCEPTS.md                              # Three challenging concepts
+│   └── PostmanCollection.json                   # API request testing collection
+
 ```
 
 ### Why This Structure?
