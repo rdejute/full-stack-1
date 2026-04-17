@@ -18,7 +18,7 @@ const openMongoConnection = async () => {
     db.once('open', function callback () {
         console.log("connected to MongoDB");
     });
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URL);
 };
 
 /* ********************

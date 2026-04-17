@@ -1,0 +1,780 @@
+{
+  "info": {
+    "_postman_id": "2eef9821-3811-4581-9de8-e88b5d690553",
+    "name": "module 6",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53615509"
+  },
+  "item": [
+    {
+      "name": "GET-hello",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3004/hello",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "hello"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-status",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3004/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-error",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3004/error",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "error"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-calc/residential",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@example.com\",\n  \"fullname\": \"John Doe\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/calc/residential?floors=10&apartments=150",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "calc",
+            "residential"
+          ],
+          "query": [
+            {
+              "key": "floors",
+              "value": "10",
+              "sortOrder": 0
+            },
+            {
+              "key": "apartments",
+              "value": "150",
+              "sortOrder": 1
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST contact-us",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullname\": \"John Doe\",\n  \"email\": \"john@example.com\", \n  \"phone\": \"234-567-8901\",\n  \"company_name\": \"Test Company\",\n  \"project_name\": \"Test Project\",\n  \"department\": \"Sales\",\n  \"project_description\": \"Test description\",\n  \"message\": \"Test message\",\n  \"file\": null\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/contact-us",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "contact-us"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-email-list",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/email-list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "email-list"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-agent-create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"first_name\": \"Raina\",\n    \"last_name\": \"DeJutes\",\n    \"email\": \"rdejute123@gmail.com\",\n    \"region\": \"south\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agent-create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agent-create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-agents",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agents",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agents"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-agents-by-region/north",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agents-by-region/north",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agents-by-region",
+            "north"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-agents-by-region/south",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agents-by-region/south",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agents-by-region",
+            "south"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-agents-by-region/east",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agents-by-region/east",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agents-by-region",
+            "east"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-agents-by-region/west",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agents-by-region/west",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agents-by-region",
+            "west"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH-agent-update-info",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"rdejute1@gmail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agent-update-info?id=69dfb111ca042a437393487e",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agent-update-info"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "69dfb111ca042a437393487e",
+              "type": "text",
+              "id": 0,
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE-agent-delete",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "text"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/agent-delete?id=69dfb111ca042a437393487e",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "agent-delete"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "69dfb111ca042a437393487e",
+              "type": "text",
+              "id": 0,
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-region-avg?region=north",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region-avg?region=north",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region-avg"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "north",
+              "type": "text",
+              "id": 0,
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-region-avg?region=south",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region-avg?region=south",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region-avg"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "south",
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-region-avg?region=east",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region-avg?region=east",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region-avg"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "east",
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-region-avg?region=west",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region-avg?region=west",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region-avg"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "west",
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-region-create",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"region\": \"west\",\n  \"address\": \"1234 South Ave, Montreal\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3004/region-create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region-create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-region?region=east",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/region?region=east",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "region"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "east",
+              "type": "text",
+              "id": 0,
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-all-stars",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "mySecretKey123",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3004/all-stars",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3004",
+          "path": [
+            "all-stars"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

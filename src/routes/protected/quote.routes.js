@@ -1,13 +1,10 @@
-/* *******************
- * CONTROLLERS IMPORT
- *********************/
 import quoteController from '../../controllers/quote.controller.js';
+import { validateBuildingType } from '../../shared/middleware/buildingTypeValidator.js';
+import { validateEmail } from '../../shared/middleware/emailValidator.js';
+import { validateQuoteParams, validateQuoteContact } from '../../shared/middleware/quoteValidator.js';
 
-/* *******************
- * ROUTE CONFIGURATION
- *********************/
 const quoteRoutesEndpoint = (app) => {
-    app.get('/calc-residential', quoteController.calculResidential);
+    app.post('/calc/:buildingType', validateQuoteParams, validateQuoteContact, quoteController.postQuote);
 }
 
 /* *******

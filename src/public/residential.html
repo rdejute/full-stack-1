@@ -363,6 +363,83 @@
 				</div>
 			</section>
 			<!-- /BUSINESS MODEL -->
+			 
+				<!-- AGENT TABLE -->
+				<section id="agent-table-section" class="bg-light p-4">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 text-center mb-4">
+								<h2>Meet Our Top Agents</h2>
+								<p class="lead">Browse live agent data, filter by region, and sort by name, rating, or fee.</p>
+							</div>
+						</div>
+						<div class="row mb-4">
+							<div class="col-md-4">
+								<label for="region-select" class="font-weight-bold">Filter by region</label>
+								<select id="region-select" class="form-control">
+									<option value="all">All regions</option>
+									<option value="north">North</option>
+									<option value="south">South</option>
+									<option value="east">East</option>
+									<option value="west">West</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 table-responsive">
+								<table class="table table-striped table-hover" id="agent-table">
+									<thead>
+										<tr>
+										<th scope="col" data-sort="first_name" class="sortable" style="cursor:pointer">First Name <span class="sort-indicator"></span></th>
+										<th scope="col" data-sort="last_name" class="sortable" style="cursor:pointer">Last Name <span class="sort-indicator"></span></th>
+											<th scope="col" data-sort="rating" class="sortable" style="cursor:pointer">Rating <span class="sort-indicator"></span></th>
+											<th scope="col" data-sort="fee" class="sortable" style="cursor:pointer">Fee <span class="sort-indicator"></span></th>
+											<th scope="col">Region</th>
+										</tr>
+									</thead>
+									<tbody id="agent-table-body">
+										<tr>
+										<td colspan="5" class="text-center">Loading agent data...</td>
+										</tr>
+									</tbody>
+								</table>
+								<p id="agent-table-message" class="text-muted"></p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- /AGENT TABLE -->
+
+				<!-- AGENT TABLE COLOR CONFIGURATION -->
+				<style>
+					/* Perfect rating (100) - Green background */
+					.agent-row-perfect {
+						background-color: #d4edda !important;
+						border-left: 4px solid #28a745;
+					}
+					.agent-row-perfect:hover {
+						background-color: #c3e6cb !important;
+					}
+
+					/* Excellent rating (90+) - Blue background */
+					.agent-row-excellent {
+						background-color: #d1ecf1 !important;
+						border-left: 4px solid #0c5460;
+					}
+					.agent-row-excellent:hover {
+						background-color: #bee5eb !important;
+					}
+
+					/* Good rating (<90) - Light purple/gray background */
+					.agent-row-good {
+						background-color: #dcd3e9 !important;
+						border-left: 4px solid #baa1db;
+					}
+					.agent-row-good:hover {
+						background-color: #d8c7ef !important;
+					}
+				</style>
+				<!-- /AGENT TABLE COLOR CONFIGURATION -->
 
 			<!-- PARALLAX -->
 			<section class="parallax parallax-2" style="background-image: url('assets/images/rocketElevators/homeSlider1.jpeg');">
@@ -543,6 +620,7 @@
 		<script src="assets/js/view/demo.layerslider_slider.js"></script>
 
 		<!-- SCRIPT -->
+		<script src="assets/js/api-config.js"></script>
 		<script src="assets/js/agentsList.js"></script>
 
 		<!-- OPEN MODALS SCRIPT -->

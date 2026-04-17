@@ -3,6 +3,7 @@
  ****************************/
 import regionSchema from '../shared/db/mongodb/schemas/region.schema.js';
 import agentSchema from '../shared/db/mongodb/schemas/agent.schema.js';
+import { FORMATTER } from '../shared/resources/data.js';
 
 
 /* **************
@@ -28,34 +29,23 @@ const regionAvg = async (req, res) => {
         }
 
         // Retrieve agents in the specified region
-        const agentsSorted = await agentSchema.find({}).sort({ last_name: 1 });
+        const agentsSorted = await agentSchema.find({ region }).sort({ last_name: 1 });
         if (!Array.isArray(agentsSorted) || agentsSorted.length === 0) {
-            return res.status(404).json({ error: 'No agents available' });
+            return res.status(404).json({ error: `No agents found in region: ${region}` });
         }
 
-        // Filter agents by region
-        const filteredAgents = agentsSorted.filter(agent => 
-            agent?.region?.toLowerCase() === region
-        );
-        if (filteredAgents.length === 0) return res.status(404).json({ error: `No agents found in region: ${region}` });
-
         // Calculate averages from filtered agents
-        const avgRating = (filteredAgents.reduce((sum, agent) => 
-            sum + Number(agent.rating), 0) / filteredAgents.length).toFixed(2);
-        const avgFee = (filteredAgents.reduce((sum, agent) => 
-            sum + Number(agent.fee), 0) / filteredAgents.length).toFixed(2);
-
-        // Format fee as currency
-        let formattedFee;
-        FORMATTER && typeof FORMATTER.format === 'function' 
-            ? formattedFee = FORMATTER.format(parseFloat(avgFee))
-            : formattedFee = avgFee;
+        const avgRating = (agentsSorted.reduce((sum, agent) =>
+            sum + Number(agent.rating || 0), 0) / agentsSorted.length).toFixed(2);
+        const avgFee = (agentsSorted.reduce((sum, agent) =>
+            sum + Number(agent.fee || 0), 0) / agentsSorted.length).toFixed(2);
+        const formattedFee = FORMATTER.format(parseFloat(avgFee));
 
         res.status(200).json({
             region,
             rating: `${avgRating}%`,
             fee: formattedFee,
-            agentCount: filteredAgents.length
+            agentCount: agentsSorted.length
         });
     } catch (error) {
         console.error('RegionAvg error:', error.message);
@@ -72,15 +62,16 @@ const createRegion = async (req, res) => {
     try {
         // Validate required fields
         const { region, address } = req.body;
-        const regionName = region.toLowerCase();
 
         // Check for missing region
-        if (!regionName) {
+        if (!region || typeof region !== 'string' || region.trim().length === 0) {
             return res.status(400).json({ 
                 error: 'Missing required fields',
                 message: 'region is required' 
             });
         }
+
+        const regionName = region.toLowerCase();
 
         // Validate region name
         const validRegions = ['north', 'south', 'east', 'west'];
