@@ -1,52 +1,60 @@
-/* *********************
- * THIRD-PARTY LIBRARIES
- ***********************/
 import mongoose from 'mongoose';
-
-/* **************************
- * SCHEMAS IMPORT
- ****************************/
 import agentSchema from '../shared/db/mongodb/schemas/agent.schema.js';
 
-/* **************
- * ROUTE HANDLERS
- ****************/
 /**
- * GET - /email-list
- * Returns a comma-separated list of all agent emails
+ * Agent management controller
+ * 
+ * Handles CRUD operations for sales agents including creation,
+ * retrieval, updates, and email list generation for business operations.
+ */
+
+/**
+ * Returns comma-separated list of all agent emails
+ * 
+ * Useful for marketing campaigns and bulk communications.
+ * Validates email format and removes duplicates before returning.
+ * 
+ * @param {Request} _req - Express request object (unused)
+ * @param {Response} res - Express response object
  */
 const agentEmailList = async (_req, res) => {
     try {
-        // Retrieve all agents sorted by email
+        // Retrieve all agents sorted by email for consistent output
         const agentsSorted = await agentSchema.find({}).sort({ email: 1 });
 
-        // Check if agents are found
+        // Validate that agents array exists and has content
         if (!Array.isArray(agentsSorted) || agentsSorted.length === 0) {
             return res.status(404).json({ error: 'No agents available' });
         }
 
-        // Extract and compile email list
+        // Filter out invalid emails and trim whitespace
         const emails = agentsSorted
             .filter(agent => agent?.email?.trim())
             .map(agent => agent.email.trim());
 
-        // Check if any valid emails were found
+        // Return 404 if no valid emails found after filtering
         if (emails.length === 0) return res.status(404).json({ error: 'No valid emails found' });
 
+        // Return plain text response for easy copy-paste
         res.status(200).send(emails.join(", "));
     } catch (error) {
-        console.error('Error in status endpoint:', error);
+        console.error('Error in agentEmailList:', error);
         res.status(500).json({ error: 'Server error', message: error.message });
     }
 };
 
 /**
- * POST - /agent-create
- * Creates a new agent with required fields: first_name, last_name, email, region
+ * Creates a new agent with validation and duplicate checking
+ * 
+ * Required fields: first_name, last_name, email, region
+ * Optional fields: rating, fee (defaults will be applied)
+ * 
+ * @param {Request} req - Express request object with agent data
+ * @param {Response} res - Express response object
  */
 const createAgent = async (req, res) => {
     try {
-        // Extract and validate required fields from request body
+        // Extract required fields for agent creation
         const { first_name, last_name, email, region } = req.body;
 
         // Validate required fields

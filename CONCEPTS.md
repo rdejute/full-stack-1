@@ -1,4 +1,4 @@
-# Module 6 – Full-Stack DEvelopment 1
+# Module 6 – Full-Stack Development 1
 
 
 ## 🎯 Purpose
